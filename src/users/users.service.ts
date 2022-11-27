@@ -13,6 +13,9 @@ export class UsersService {
     }
 
     findOne(id: number) {
+        if(!id) {
+            return null;
+        }
         const findOneOptions = {
             id: id
         };
@@ -20,7 +23,11 @@ export class UsersService {
     }
 
     find(email: string) {
-        return this.repo.find({where: {email: email}});
+        return this.repo.find({
+            where: {
+                email: email
+            }
+        })
     }
 
     async update(id: number, attrs: Partial<User>){
